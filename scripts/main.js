@@ -19,7 +19,7 @@ let currentIconLi = null;
 
 document.querySelectorAll(".skills__icon").forEach((icon) => {
   icon.addEventListener("click", (event) => {
-    event.stopPropagation()
+    event.stopPropagation();
 
     // Sélectionner le conteneur temporaire
     const tempContainer = document.querySelector(
@@ -42,7 +42,8 @@ document.querySelectorAll(".skills__icon").forEach((icon) => {
 
     // Ajouter la classe 'hidden' au parent de l'icône cliquée
     parentIcon.classList.add("hidden");
-
+    // Affichage du texte
+    parentIconCopy.querySelector("div").classList.toggle("hidden");
     // Ajouter le clone dans le conteneur temporaire
     tempContainer.appendChild(parentIconCopy);
 
@@ -62,16 +63,14 @@ document.querySelectorAll(".skills__icon").forEach((icon) => {
     currentIconLi = parentIcon;
   });
 });
+
 // TODO Ajouter un effet d'assombrissement lorsque l'on clique sur un icone pour mettre en avant la valeur choisie
 
 // TODO vérifier si on a bien besoin des ids pour que cela marche
 
 // TODO faire un effet ou l'icone part de la gauche, le texte de la droite au moment du click et arrive à la position finale plus effet d'opacité pour un mouvement plus fluide
 
-// TODO Rendre le tout responsibe
-
 document.addEventListener("click", () => {
-    
   if (currentIconInTempContainer) {
     currentIconLi.classList.remove("hidden"); // Restaurer l'état de l'icône originale
     currentIconInTempContainer.remove(); // Supprime l'ancienne icône du conteneur temporaire
@@ -79,3 +78,47 @@ document.addEventListener("click", () => {
     currentIconLi = null;
   }
 });
+
+const overlay = document.querySelector(".skills__overlay");
+
+// Sélectionner le conteneur où les enfants seront ajoutés/supprimés
+const container = document.querySelector(".skills__icon-temporary--open");
+
+let config = { childList: true };
+
+let callback = function (mutationsList) {
+  for (var mutation of mutationsList) {
+    if (mutation.type == "childList") {
+      if (container.childLis !== 0) {
+        overlay.classList.toggle("hidden");
+      }
+    }
+  }
+};
+
+let observer = new MutationObserver(callback);
+// Commence à observer le noeud cible pour les mutations précédemment configurées
+observer.observe(container, config);
+
+const skillsSection = document.querySelector("#skills");
+
+function checkSkillsVisibility() {
+  const rect = skillsSection.getBoundingClientRect(); // Récupère la position de la section
+  // Vérifie si la section est complètement hors de la fenêtre (au-dessus ou en dessous)
+
+  if (rect.top >= window.innerHeight || rect.bottom <= 0) {  
+    if (currentIconInTempContainer !== null) {
+      overlay.classList.add("hidden"); // Ferme l'overlay si la section n'est plus visible
+      currentIconLi.classList.remove("hidden"); // Restaurer l'état de l'icône originale
+      currentIconInTempContainer.remove(); // Supprime l'ancienne icône du conteneur temporaire
+      currentIconInTempContainer = null;
+      currentIconLi = null;
+    }
+  }
+}
+
+// Ajouter un écouteur d'événements pour vérifier la visibilité lors du défilement
+window.addEventListener("scroll", checkSkillsVisibility);
+
+// Vérifie aussi au chargement de la page si la section est visible
+document.addEventListener("DOMContentLoaded", checkSkillsVisibility);
