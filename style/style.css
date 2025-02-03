@@ -1,54 +1,154 @@
+/* ========== RÉINITIALISATION GLOBALE ========== */
+
+/* Supprime les marges et les paddings par défaut de tous les éléments,
+   définit la boîte en mode border-box pour un meilleur contrôle des dimensions,
+   enlève le soulignement des liens et supprime les puces des listes */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   text-decoration: none;
   list-style: none;
-}
-:root {
-  --bg-color: #050d33;
-  --bg-color-hamburger: #e3b23c;
-  --secondary-color: #e3b23c;
-  --color-font: #e8f7ee;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Définition des variables CSS pour les couleurs */
+:root {
+  --bg-color: #050d33; /* Couleur de fond principale */
+  --bg-color-hamburger: #e3b23c; /* Couleur pour le menu hamburger */
+  --secondary-color: #e3b23c; /* Couleur secondaire */
+  --color-font: #e8f7ee; /* Couleur du texte */
+}
+
+/* Empêche le défilement horizontal et vertical de la page */
 html,
 body {
   overflow-x: hidden;
+  overflow-y: hidden;
 }
 
-/* SECTION HERO  */
+/* ========== SECTION HERO ========== */
+
+#hero {
+  position: relative;
+  background-color: rgb(0, 8, 20);
+  color: white;
+}
+#hero::after {
+  content: "";
+  position: absolute;
+  bottom: -150px;
+  left: 0;
+  width: 100%;
+  height: 300px;
+  background: linear-gradient(
+    to bottom,
+    rgb(0, 8, 20),
+    /* Bleu nuit */ rgb(10, 15, 25),
+    rgb(15, 22, 35),
+    rgb(20, 30, 45),
+    rgb(28, 40, 58),
+    rgb(37, 50, 72),
+    rgb(47, 63, 88),
+    rgb(60, 77, 105),
+    rgb(75, 92, 122),
+    /* Bleu-gris */ rgb(92, 108, 140),
+    rgb(110, 125, 157),
+    rgb(130, 143, 175),
+    /* Gris-bleu */ rgb(150, 160, 190),
+    rgb(170, 178, 205),
+    rgb(190, 195, 218),
+    rgb(210, 212, 230),
+    /* Gris clair */ rgb(230, 230, 240),
+    rgb(245, 245, 250),
+    rgb(255, 255, 255) /* Blanc */
+  );
+}
+#about {
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+}
+#skills {
+  position: relative;
+  background-color: rgb(255, 255, 255);
+  color: black;
+}
+#skills::after {
+  content: "";
+  position: absolute;
+  bottom: -200px;
+  left: 0;
+  width: 100%;
+  height: 400px;
+  background: linear-gradient(
+    to bottom,
+    rgb(255, 255, 255),
+    rgb(255, 253, 240),
+    rgb(255, 252, 225),
+    rgb(255, 250, 210),
+    rgb(255, 248, 195),
+    rgb(255, 246, 180),
+    rgb(255, 244, 165),
+    rgb(255, 242, 150),
+    rgb(255, 240, 135),
+    rgb(255, 238, 120),
+    rgb(255, 236, 110),
+    rgb(255, 234, 100),
+    rgb(255, 232, 90),
+    rgb(255, 230, 80),
+    rgb(255, 228, 70),
+    rgb(255, 226, 60),
+    rgb(255, 224, 50),
+    rgb(255, 222, 45),
+    rgb(255, 220, 40),
+    rgb(255, 218, 35),
+    rgb(255, 216, 25),
+    rgb(255, 215, 15),
+    rgb(255, 214, 10)
+  );
+}
+
+#projects {
+  background-color: #ffd60a;
+  color: whitesmoke;
+}
+
+/* ========== SECTION HERO ========== */
+
 .hero__wrapper {
   position: relative;
   display: flex;
-  height: 100vh;
-  justify-content: center;
-  align-items: center;
+  height: 100vh; /* Occupe toute la hauteur de l'écran */
+  justify-content: center; /* Centre horizontalement */
+  align-items: center; /* Centre verticalement */
 }
 
 .hero {
   display: flex;
-  flex-direction: column;
+  flex-direction: column; /* Aligne les éléments en colonne */
   justify-content: center;
   align-items: center;
-  text-align: center;
+  text-align: center; /* Centre le texte */
 }
 
+/* Conteneur de l'image du héros */
 .hero__img-wrapper {
   display: inline-block;
-  border-radius: 1000px;
+  border-radius: 1000px; /* Rend l'image totalement ronde */
   height: 400px;
   width: 400px;
-  object-fit: cover;
-  overflow: hidden;
+  object-fit: cover; /* Ajuste l'image pour remplir le cadre */
+  overflow-y: hidden; /* Cache le débordement vertical */
 }
 
+/* Style de l'image du héros */
 .hero__img {
   height: 100%;
   width: 100%;
   object-fit: cover;
 }
 
+/* 📱 Adaptation pour les petits écrans */
 @media (max-width: 768px) {
   .hero__img-wrapper {
     height: 300px;
@@ -56,21 +156,24 @@ body {
   }
 }
 
-/* SECTION ABOUT */
+/* ========== SECTION ABOUT ========== */
+
 .about__wrapper {
   position: relative;
   display: flex;
-  height: 100vh;
+  height: 100vh; /* Pleine hauteur de l'écran */
   justify-content: center;
   align-items: center;
 }
+
 .about {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: wrap; /* Permet aux éléments de passer à la ligne si nécessaire */
   justify-content: center;
   align-items: center;
 }
+
 .about__txt-wrapper {
   display: inline-block;
   padding: 10px;
@@ -89,7 +192,7 @@ body {
   object-fit: cover;
 }
 
-/* SECTION SKILLS */
+/* ========== SECTION SKILLS ========== */
 
 .skills__wrapper {
   position: relative;
@@ -98,90 +201,215 @@ body {
   justify-content: center;
   align-items: center;
 }
-.skills {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-}
 
-.skills__icon-wrapper {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  transition: margin-top 0.5s ease;
-}
+/* Liste des icônes */
 .skills__list-icon {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
   height: 100%;
+  gap: 10px;
   justify-content: center;
   align-items: center;
+  transition: transform 0.8s ease-in-out; /* Animation fluide */
 }
+
+/* Effet lorsque la liste devient active */
+.skills__list-icon--active {
+  transform: translateX(-20vw) rotate(90deg);
+}
+
+/* Icônes des compétences */
 .skills__icon {
+  cursor: pointer; /* Indique que l'élément est cliquable */
   display: flex;
   flex-wrap: wrap;
   position: relative;
   height: auto;
   width: 80px;
-  transform: scale(1) translateY(0);
-  transition: transform 0.6s ease, z-index 0.6s ease;
+  transition: transform 0.4s ease-in-out; /* Animation fluide */
 }
 
-.skills__icon {
-  cursor: pointer;
+.skills__icon:hover {
+  transform: scale(1.05);
 }
-
-.skills__icon-temporary--open {
+/* Conteneur temporaire pour une icône active */
+.skills__icon--active {
   display: flex;
   justify-content: center;
-  align-content: center;
-  
-  width:70%;
-  z-index:10000;
-  box-shadow:-1px -1px 18px -3px rgba(0, 0, 0, 0.5);
-  transform: scale(1.5) translateY(-50px);
-  opacity: 0.7;
-  
-}
-
-.skills__item{
-  display: flex;
-  justify-content:space-between;
   align-items: center;
-  z-index:10000;
-  background-color: white;
-  border-radius: 5px;
-  
+  background-color: rgb(137, 134, 134);
+
+  max-width: 30vw;
+  padding: 15px;
+
+  border-radius: 10px;
+
+  /* Initialement en dehors de l'écran */
+  transform: translateX(100vw);
+  opacity: 0;
+  transition: transform 0.8s ease-out, opacity 0.5s ease-in;
 }
 
+/* Quand la zone temporaire est active */
+.skills__icon--active.show {
+  transform: translateX(17vw) translateY(-5vh); /* Arrive à sa position finale */
+  opacity: 1; /* Devient visible */
+}
+.skills__icon--active.hide {
+  transform: translateX(100vw) translateY(-5vh); /* Retour vers la gauche */
+  opacity: 0;
+}
+
+/* Élément contenant une icône */
+.skills__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Effet de rotation appliqué aux icônes déplacées */
+.skills__item--justify {
+  transform: rotate(-90deg);
+}
+
+/* Conteneur du texte sous une icône */
 .skills__icon--open {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1rem;
+  font-size: 1.5rem;
   color: #000000;
-  line-height: 1.5;
-  opacity: 1;
-  transform: translateY(0);
-  
-}
-.hidden {
-  display: none;
-  transform: display 4s ease;
 }
 
-.skills__overlay{
-  position: fixed;
-  top: 0;
-  left: 0;
+/* Classe qui cache un élément */
+.hidden {
+  display: none;
+}
+
+/* ========== SECTION PROJECTS ========== */
+.projects {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  height: 100vh;
+  width: 100%;
+  position: relative;
+}
+
+.projects__card {
+  width: 250px;
+  height: 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  font-weight: bold;
+  transition: all 0.5s ease;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+}
+
+.projects__card.minimized {
+  transform: scale(0.8);
+  opacity: 0.5;
+  pointer-events: none; /* Désactive les interactions */
+}
+
+.projects__card.active {
+  position: absolute;
+  left: 5vw;
+}
+
+/* Conteneur interne de la carte */
+.projects__card-inner {
+  position: relative;
   width: 100%;
   height: 100%;
-  z-index:10;
-  background-color: rgba(0, 0, 0, 0.75); /* Ombre sombre avec transparence */
-  pointer-events: none;
+  text-align: center;
+  transition: all 0.5s ease-in-out;
+  
 }
+
+/* Faces de la carte */
+.projects__card-front,
+.projects__card-back {
+  box-shadow: 0 8px 14px 0 rgba(0, 0, 0, 0.2);
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  transition: all 0.5s ease-in-out;
+}
+
+.projects__card-front {
+  background: rgb(0, 8, 20);
+  z-index: 2; /* Toujours au-dessus du back par défaut */
+}
+
+.projects__card-back {
+  border-radius: 10px;
+  background: linear-gradient(302deg, #ffd60a, #ffffff);
+  background-size: 120% 120%;
+  opacity: 0;
+  z-index: 1;
+}
+
+/* Quand on active la carte, le dos glisse vers la droite */
+.projects__card-back.display {
+  width:40vw;
+  transform: translateX(260px);
+  opacity: 1;
+  overflow-y: scroll;
+  pointer-events: none;
+  display:grid;
+}
+
+
+.projects__button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 60%;
+  height: 20%;
+
+  background: #000814;
+  border: 1px solid #000814;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+}
+
+.projects__button-text {
+  font-weight: 900;
+  font-size: 1.1rem;
+  letter-spacing: 0.14em;
+  color: #ffffff;
+}
+
+/* ========== RESPONSIVE DESIGN ========== */
+
+/* 📱 Pour les mobiles (écrans < 768px) */
+@media (max-width: 768px) {
+  .skills__list-icon {
+    grid-template-columns: repeat(3, 1fr); /* Affiche 3 icônes par ligne */
+  }
+
+  .skills__icon--active {
+    width: 90%;
+    max-width: 320px;
+    margin-top: 30px;
+  }
+
+  .skills__icon {
+    width: 60px;
+    height: 60px;
+  }
+}
+
