@@ -1,4 +1,4 @@
-/* ========== RÉINITIALISATION GLOBALE ========== */
+/* ==========r RÉINITIALISATION GLOBALE ========== */
 
 /* Supprime les marges et les paddings par défaut de tous les éléments,
    définit la boîte en mode border-box pour un meilleur contrôle des dimensions,
@@ -9,7 +9,7 @@
   box-sizing: border-box;
   text-decoration: none;
   list-style: none;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 /* Définition des variables CSS pour les couleurs */
@@ -20,14 +20,14 @@
   --color-font: #e8f7ee; /* Couleur du texte */
 }
 
-/* Empêche le défilement horizontal et vertical de la page */
+/* Empêche le défilement horizontal et vertical d la page */
 html,
 body {
   overflow-x: hidden;
   overflow-y: hidden;
 }
 
-/* ========== SECTION HERO ========== */
+/* ========== SECTIO HERO ========== */
 
 #hero {
   position: relative;
@@ -37,6 +37,7 @@ body {
 #hero::after {
   content: "";
   position: absolute;
+  z-index: 0;
   bottom: -150px;
   left: 0;
   width: 100%;
@@ -74,6 +75,7 @@ body {
   color: black;
 }
 #skills::after {
+  z-index: 0;
   content: "";
   position: absolute;
   bottom: -200px;
@@ -112,7 +114,10 @@ body {
   background-color: #ffd60a;
   color: whitesmoke;
 }
-
+#contact {
+  background-color: #ffd60a;
+  color: #050d33;
+}
 /* ========== SECTION HERO ========== */
 
 .hero__wrapper {
@@ -209,6 +214,7 @@ body {
   width: 100%;
   height: 100%;
   gap: 10px;
+  z-index: 1;
   justify-content: center;
   align-items: center;
   transition: transform 0.8s ease-in-out; /* Animation fluide */
@@ -227,6 +233,7 @@ body {
   position: relative;
   height: auto;
   width: 80px;
+  z-index: 1;
   transition: transform 0.4s ease-in-out; /* Animation fluide */
 }
 
@@ -242,6 +249,7 @@ body {
 
   max-width: 30vw;
   padding: 15px;
+  z-index: 1;
 
   border-radius: 10px;
 
@@ -266,6 +274,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 3;
   transition: transform 0.3s ease-in-out;
 }
 
@@ -331,7 +340,6 @@ body {
   height: 100%;
   text-align: center;
   transition: all 0.5s ease-in-out;
-  
 }
 
 /* Faces de la carte */
@@ -354,6 +362,10 @@ body {
 }
 
 .projects__card-back {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  padding: 20px;
   border-radius: 10px;
   background: linear-gradient(302deg, #ffd60a, #ffffff);
   background-size: 120% 120%;
@@ -363,14 +375,21 @@ body {
 
 /* Quand on active la carte, le dos glisse vers la droite */
 .projects__card-back.display {
-  width:40vw;
+  width: 40vw;
   transform: translateX(260px);
   opacity: 1;
   overflow-y: scroll;
   pointer-events: none;
-  display:grid;
+  display: grid;
 }
 
+.project-item {
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
 
 .projects__button {
   display: flex;
@@ -392,6 +411,54 @@ body {
   letter-spacing: 0.14em;
   color: #ffffff;
 }
+/* ========== SECTION CONTACT ========== */
+
+.contact__wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  gap: 30px;
+  position: relative;
+}
+
+.contact__title {
+  font-size: 4rem;
+  font-weight: 800;
+  color: #050d33;
+}
+
+.contact__description {
+  font-size: 16px;
+  color: #050d33;
+  margin-bottom: 15px;
+}
+
+.contact__info a {
+  color: #050d33;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.contact__info a:hover {
+  text-decoration: underline;
+}
+
+.contact__socials a {
+  display: inline-block;
+  color: #050d33;
+  text-decoration: none;
+}
+
+.contact__socials a:hover {
+  color: #141533;
+}
+
+.contact__hand-wave {
+  height: 50px;
+  width: auto;
+}
 
 /* ========== RESPONSIVE DESIGN ========== */
 
@@ -412,4 +479,3 @@ body {
     height: 60px;
   }
 }
-
