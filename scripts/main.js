@@ -115,11 +115,9 @@ let callback = function (mutationsList) {
   for (var mutation of mutationsList) {
     if (mutation.type === "childList") {
       if (container !== 0) {
-        console.log(liste);
         listIcon.classList.toggle("skills__list-icon--active");
         liste.forEach((liste) => {
           let children = liste.querySelector(".skills__item");
-          console.log(children);
           children.classList.toggle("skills__item--justify");
         });
       }
@@ -133,53 +131,87 @@ let observer = new MutationObserver(callback);
 // Commence à observer le noeud cible pour les mutations précédemment configurées
 observer.observe(container, config);
 
-const cards = document.querySelectorAll(".projects__card");
-const cardsContainer = document.querySelector(".projects");
-let isCardActive = false; // État global
+/* ========== PROJECTS ========== */
 
-cards.forEach((card) => {
-  card.addEventListener("click", (event) => {
-    event.stopPropagation(); // Empêche l'événement de se propager au document
-    const cardBack = card.querySelector(".projects__card-inner .projects__card-back")
-    console.log(cardBack);
-    if (isCardActive && !card.classList.contains("active")) {
-      return; // Empêche d’ouvrir une autre carte si une est déjà active
+const cards = document.querySelectorAll('.projects__card');
+let activeCard = null;
+let isTransitioning = false;
+
+function disableScrolling() {
+  $.scrollify.disable();
+  document.body.classList.add('active-card');
+}
+
+function enableScrolling() {
+  document.body.classList.remove('active-card');
+  $.scrollify.enable();
+}
+
+cards.forEach(card => {
+  card.addEventListener('click', (e) => {
+    e.stopPropagation();
+    
+    if (isTransitioning) return;
+    
+    const cardBack = card.querySelector('.projects__card-back');
+    
+    if (activeCard === card) {
+      // Close active card
+      isTransitioning = true;
+      cardBack.classList.add('closing');
+      card.classList.remove('active');
+      
+      setTimeout(() => {
+        cardBack.classList.remove('closing');
+        cardBack.style.visibility = 'hidden';
+        activeCard = null;
+        isTransitioning = false;
+        enableScrolling();
+        
+        cards.forEach(otherCard => {
+          otherCard.classList.remove('minimized');
+        });
+      }, 500);
+      
+    } else if (!activeCard) {
+      // Open new card
+      isTransitioning = true;
+      activeCard = card;
+      cardBack.style.visibility = 'visible';
+      disableScrolling();
+      
+      requestAnimationFrame(() => {
+        card.classList.add('active');
+        
+        cards.forEach(otherCard => {
+          if (otherCard !== card) {
+            otherCard.classList.add('minimized');
+          }
+        });
+        
+        setTimeout(() => {
+          isTransitioning = false;
+        }, 500);
+      });
     }
-    cardBack.classList.toggle("display")
-    // Réinitialise toutes les cartes
-    cards.forEach((otherCard) => {
-      otherCard.classList.remove("active", "minimized");
-      otherCard.style.position = "relative";
-      otherCard.style.transform = "scale(1)";
-      otherCard.style.zIndex = "1";
-    });
-
-    // Active la carte actuelle
-    isCardActive = true;
-    card.classList.add("active");
-    card.style.position = "absolute";
-    card.style.transform = "scale(1.2)";
-    card.style.zIndex = "2";
-
-    // Réduit les autres cartes
-    cards.forEach((otherCard) => {
-      if (otherCard !== card) {
-        otherCard.classList.add("minimized");
-      }
-    });
   });
 });
 
-// Gestion du clic hors des cartes pour réinitialiser
-document.addEventListener("click", () => {
-  isCardActive = false; // Réinitialise l'état
-
-  cards.forEach((card) => {
-    const cardBack = card.querySelector(".projects__card-inner .projects__card-back")
-    cardBack.classList.remove("display")
-    card.classList.remove("active", "minimized");
-    card.style.position = "relative";
-    card.style.transform = "scale(1)";
-    card.style.zIndex = "1";
-  });
+// Handle outside clicks
+document.addEventListener('click', () => {
+  if (activeCard) {
+    const cardBack = activeCard.querySelector('.projects__card-back');
+    cardBack.classList.add('closing');
+    activeCard.classList.remove('active');
+    
+    setTimeout(() => {
+      cardBack.classList.remove('closing');
+      activeCard = null;
+      enableScrolling();
+      
+      cards.forEach(card => {
+        card.classList.remove('minimized');
+      });
+    }, 500);
+  }
 });
