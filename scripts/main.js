@@ -215,3 +215,48 @@ document.addEventListener('click', () => {
     }, 500);
   }
 });
+
+//Animation text-shadow sur le hover des projects__card
+
+cards.forEach(card => {
+  let h2 = card.querySelector("h2");
+  let text = h2.innerText;
+  h2.innerHTML = ""; // On vide le h2
+
+  // On transforme chaque lettre en un <span>
+  text.split("").forEach(char => {
+    let span = document.createElement("span");
+    span.innerText = char;
+    h2.appendChild(span);
+  });
+
+  let chars = h2.querySelectorAll("span");
+
+  let glowShadow = `  2px 0px 4px rgba(5, 13, 51, .9), 
+                      -2px 0px 8px rgba(5, 13, 51, 1), 
+                      0px 2px 10px rgba(5, 13, 51, 1),
+                      0px -2px 10px rgba(5, 13, 51, 1)`;
+
+  const initShadow = `  2px 0px 4px rgba(5, 13, 51, 0), 
+                        -2px 0px 8px rgba(5, 13, 51, 0), 
+                        0px 2px 10px rgba(5, 13, 51, 0),
+                        0px -2px 10px rgba(5, 13, 51, 0)`;
+
+  card.addEventListener("mouseenter", () => {
+    gsap.fromTo(
+      chars,
+      { textShadow: initShadow },
+      { 
+        textShadow: glowShadow, 
+        stagger: { amount: 0.6 },
+        duration: 0.5,
+        ease: "power2.out"
+      }
+    );
+  });
+
+  card.addEventListener("mouseleave", () => {
+    gsap.to(chars, { textShadow: initShadow, duration: 0.6, ease: "power2.inOut" });
+  });
+});
+
