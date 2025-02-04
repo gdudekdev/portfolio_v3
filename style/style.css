@@ -232,7 +232,7 @@ body.active-card{
   width: 100%;
   height: 100%;
   gap: 10px;
-  z-index: 1;
+  z-index: 10;
   justify-content: center;
   align-items: center;
   transition: transform 0.8s ease-in-out; /* Animation fluide */
@@ -251,7 +251,7 @@ body.active-card{
   position: relative;
   height: auto;
   width: 80px;
-  z-index: 1;
+  z-index: 10;
   transition: transform 0.4s ease-in-out; /* Animation fluide */
 }
 
@@ -267,7 +267,7 @@ body.active-card{
 
   max-width: 30vw;
   padding: 15px;
-  z-index: 1;
+  z-index: 20;
 
   border-radius: 10px;
 
@@ -328,12 +328,25 @@ body.active-card{
 .projects__card {
   width: 33.33%;
   height: 40%;
+  background: #050d33 ;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
   position: relative;
   transition: all 0.5s ease-in-out;
+}
+.projects__card:hover{
+  transform: scale(1.05);
+  background: #e3b23c;
+}
+.projects__card h2{
+  font-size:3rem;
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+.projects__card:hover h2{
+  opacity: 0;
 }
 
 .projects__card.minimized {
@@ -356,15 +369,7 @@ body.active-card{
 .projects__card-front {
   width: 100%;
   height: 100%;
-  border: 1px solid black;
   transition: opacity 0.3s ease-in-out;
-}
-.projects__card-front {
-  width: 100%;
-  height: 100%;
-  border: 1px solid black;
-  transition: opacity 0.3s ease-in-out;
-  background: #050d33 ;
   position: relative;
   display: flex;
   justify-content: center;
@@ -396,7 +401,8 @@ body.active-card{
   transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
   padding: 20px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   gap: 20px;
   overflow-y: auto ;
 }
@@ -409,20 +415,53 @@ body.active-card{
 }
 
 .project-item {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  height:200px;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  height: 200px;
   width: 100%;
-  gap:10px;
+  gap: 10px;
   background: rgba(255, 255, 255, 0.9);
   border-radius: 8px;
-  width: 100%;
   padding: 15px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
   transform: translateX(-20px);
   opacity: 0;
+}
+
+.project-item img {
+  grid-column: 1 / 2;
+  height: 100%;
+  width: auto;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.project-item div {
+  grid-column: 2 / 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.project-item h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.project-item a {
+  display: inline-block;
+  padding: 8px 16px;
+  background: #333;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+.project-item a:hover {
+  background: #484848;
 }
 .projects__card.active .project-item {
   transform: translateX(0);
