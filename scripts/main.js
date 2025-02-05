@@ -26,6 +26,20 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     }
   });
 });
+/* ========== NAVBAR ========== */
+
+//Animation de la navbar au chargement de la page
+const navbar = document.querySelector(".navbar");
+document.addEventListener("DOMContentLoaded", function () {
+  const navbarLinks = document.querySelector(".navbar__links");
+
+  navbar.classList.add("active");
+
+  setTimeout(() => {
+    navbarLinks.classList.add("active");
+  }, 1000);
+});
+
 
 /* ========== HERO ========== */
 document.addEventListener("DOMContentLoaded", function () {
@@ -101,7 +115,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Créer les cercles
   for (let i = 0; i < numberOfCircles; i++) {
     createCircle();
-  }
+  };
 });
 
 /* ========== SKILLS ========== */
@@ -187,7 +201,7 @@ document.addEventListener("click", (event) => {
 
 // TODO implémentation d'une navbar avec logo pour revenir au hero
 // TODO ajout d'un footer
-// TODOAjout du contenu sur les section skills et projects
+// TODO Ajout du contenu sur les section skills et projects
 // TODO animation de l'apparation de la navbar au chargement de la page
 
 
