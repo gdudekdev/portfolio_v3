@@ -14,16 +14,16 @@ $(document).ready(function () {
 });
 
 // Smoothing sur le click d'un a href
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-          window.scrollTo({
-              top: target.offsetTop,
-              behavior: 'smooth'
-          });
-      }
+document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+  anchor.addEventListener("click", function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute("href"));
+    if (target) {
+      window.scrollTo({
+        top: target.offsetTop,
+        behavior: "smooth",
+      });
+    }
   });
 });
 
@@ -56,16 +56,16 @@ document.addEventListener("DOMContentLoaded", function () {
     circle.style.backgroundColor = color;
 
     // Animation aléatoire des déplacements et échelles
-    const x1 = Math.floor(Math.random() * 200) - 100 + "vw"; 
-    const y1 = Math.floor(Math.random() * 200) - 100 + "vh"; 
-    const x2 = Math.floor(Math.random() * 200) - 100 + "vw"; 
-    const y2 = Math.floor(Math.random() * 200) - 100 + "vh"; 
-    const x3 = Math.floor(Math.random() * 200) - 100 + "vw"; 
-    const y3 = Math.floor(Math.random() * 200) - 100 + "vh"; 
-    const x4 = Math.floor(Math.random() * 200) - 100 + "vw"; 
-    const y4 = Math.floor(Math.random() * 200) - 100 + "vh"; 
-    const x5 = Math.floor(Math.random() * 200) - 100 + "vw"; 
-    const y5 = Math.floor(Math.random() * 200) - 100 + "vh"; 
+    const x1 = Math.floor(Math.random() * 200) - 100 + "vw";
+    const y1 = Math.floor(Math.random() * 200) - 100 + "vh";
+    const x2 = Math.floor(Math.random() * 200) - 100 + "vw";
+    const y2 = Math.floor(Math.random() * 200) - 100 + "vh";
+    const x3 = Math.floor(Math.random() * 200) - 100 + "vw";
+    const y3 = Math.floor(Math.random() * 200) - 100 + "vh";
+    const x4 = Math.floor(Math.random() * 200) - 100 + "vw";
+    const y4 = Math.floor(Math.random() * 200) - 100 + "vh";
+    const x5 = Math.floor(Math.random() * 200) - 100 + "vw";
+    const y5 = Math.floor(Math.random() * 200) - 100 + "vh";
 
     const opacity1 = Math.random() * 0.5 + 0.3;
     const opacity2 = Math.random() * 0.5 + 0.5;
@@ -113,7 +113,7 @@ let currentIconLi = null;
 document.querySelectorAll(".skills__icon").forEach((icon) => {
   icon.addEventListener("click", (event) => {
     event.stopPropagation();
-    
+
     const tempContainer = document.querySelector(".skills__icon--active");
     const parentIcon = icon.parentNode;
 
@@ -188,6 +188,8 @@ document.addEventListener("click", (event) => {
 // TODO implémentation d'une navbar avec logo pour revenir au hero
 // TODO ajout d'un footer
 // TODOAjout du contenu sur les section skills et projects
+// TODO animation de l'apparation de la navbar au chargement de la page
+
 
 // Sélectionner le conteneur où les enfants seront ajoutés/supprimés
 const container = document.querySelector(".skills__icon--active");
@@ -335,7 +337,7 @@ cards.forEach((card) => {
         textShadow: glowShadow,
         stagger: { amount: 0.6 },
         duration: 0.5,
-        delay : 0.3,
+        delay: 0.3,
         ease: "power2.out",
       }
     );
