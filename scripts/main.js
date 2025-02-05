@@ -13,6 +13,20 @@ $(document).ready(function () {
   });
 });
 
+// Smoothing sur le click d'un a href
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+          window.scrollTo({
+              top: target.offsetTop,
+              behavior: 'smooth'
+          });
+      }
+  });
+});
+
 /* ========== HERO ========== */
 document.addEventListener("DOMContentLoaded", function () {
   // Génération dynamique des formes organiques
@@ -322,6 +336,7 @@ cards.forEach((card) => {
         textShadow: glowShadow,
         stagger: { amount: 0.6 },
         duration: 0.5,
+        delay : 0.3,
         ease: "power2.out",
       }
     );
