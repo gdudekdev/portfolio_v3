@@ -92,15 +92,8 @@ document.addEventListener("click", (event) => {
   }
 });
 
-// TODO Gérer le scroll de sortie de section pour l'overlay, l'icone sort bien mais pas l'overlay
-// TODO Ajouter un effet d'assombrissement lorsque l'on clique sur un icone pour mettre en avant la valeur choisie
-
-// TODO vérifier si on a bien besoin des ids pour que cela marche
-
-// TODO faire un effet ou l'icone part de la gauche, le texte de la droite au moment du click et arrive à la position finale plus effet d'opacité pour un mouvement plus fluide
-
-// TODO commencer à séparer les fichiers js et css pour que cela soit plus lisible, créer un fichier d'import config.js pour ne pas avoir a mettre plein de balises script dans l'hmtl, voir pour faire de même avec les fichiers css
-// TODO voir si on doit modifier hidden par visible pour jouer sur l'attribut visibility et opacity afin de gérer les aniamtions, checker aussi pour les sortir du flux lorsqu'elles ne sont pas affichées via l'attribut position:absolute
+// TODO ajout d'un effet de background sur le hero et modif de la font etc..
+// TODO màj graphique de la section skills 
 
 // Sélectionner le conteneur où les enfants seront ajoutés/supprimés
 const container = document.querySelector(".skills__icon--active");
