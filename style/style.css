@@ -13,7 +13,6 @@
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-
 /* Définition des variables CSS pour les couleurs */
 :root {
   --bg-color: #050d33; /* Couleur de fond principale */
@@ -32,20 +31,19 @@ body::-webkit-scrollbar {
   width: 8px;
 }
 
-
 body::-webkit-scrollbar-track {
-  background:#ffffff00
+  background: #ffffff00;
 }
-
 
 body::-webkit-scrollbar-thumb {
   background: rgba(0, 0, 0, 0.2);
   border-radius: 6px;
 }
-body.active-card{
-    overflow-y: hidden;
+body.active-card {
+  overflow-y: hidden;
 }
-/* ========== SECTIO HERO ========== */
+
+/* ========== SECTION HERO ========== */
 
 #hero {
   position: relative;
@@ -63,7 +61,7 @@ body.active-card{
   background: linear-gradient(
     to bottom,
     rgb(0, 8, 20),
-    /* Bleu nuit */ rgb(10, 15, 25),
+    rgb(10, 15, 25),
     rgb(15, 22, 35),
     rgb(20, 30, 45),
     rgb(28, 40, 58),
@@ -71,10 +69,10 @@ body.active-card{
     rgb(47, 63, 88),
     rgb(60, 77, 105),
     rgb(75, 92, 122),
-    /* Bleu-gris */ rgb(92, 108, 140),
+    rgb(92, 108, 140),
     rgb(110, 125, 157),
     rgb(130, 143, 175),
-    /* Gris-bleu */ rgb(150, 160, 190),
+    rgb(150, 160, 190),
     rgb(170, 178, 205),
     rgb(190, 195, 218),
     rgb(210, 212, 230),
@@ -134,7 +132,7 @@ body.active-card{
 }
 #contact {
   background-color: #ffd60a;
-  color: #050d33;
+  color: rgb(5, 13, 51);
 }
 /* ========== SECTION HERO ========== */
 
@@ -153,22 +151,101 @@ body.active-card{
   align-items: center;
   text-align: center; /* Centre le texte */
 }
+.hero__animated-bg {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+  background-color: transparent;
+  overflow: hidden;
+  animation: gradientMove 10s ease infinite;
+}
+.hero_animated-bg-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3; /* Placer l'overlay par-dessus le fond animé */
+  width: 100%;
+  height: 100%;
+  background: rgb(5, 13, 51,0.85); /* Couleur sombre avec opacité */
+  backdrop-filter: blur(100px); /* Flou sur l'arrière-plan */
+  
+}
+
+.hero__circle {
+  position: absolute;
+  z-index: 0;
+  opacity: 0.5;
+  border-radius: 50%;
+  animation: moveCircle 10s infinite cubic-bezier(0.42, 0, 0.58, 1), fadeCircle 5s infinite ease-in-out;
+
+}
+
+@keyframes gradientMove {
+  0% {
+      background-position: 0% 50%;
+  }
+  50% {
+      background-position: 100% 50%;
+  }
+  100% {
+      background-position: 0% 50%;
+  }
+}
+
+/* Animation des cercles (déplacement et opacité) */
+@keyframes moveCircle {
+  0% {
+      transform: translate(var(--x1), var(--y1)) scale(var(--scale1));
+  }
+  20% {
+      transform: translate(var(--x2), var(--y2)) scale(var(--scale2));
+  }
+  40% {
+      transform: translate(var(--x3), var(--y3)) scale(var(--scale3));
+  }
+  60% {
+      transform: translate(var(--x4), var(--y4)) scale(var(--scale4));
+  }
+  80% {
+      transform: translate(var(--x5), var(--y5)) scale(var(--scale5));
+  }
+  100% {
+      transform: translate(var(--x1), var(--y1)) scale(var(--scale1));
+  }
+}
+
+@keyframes fadeCircle {
+  0%, 100% {
+      opacity: var(--opacity1);
+  }
+  50% {
+      opacity: var(--opacity2);
+  }
+}
 
 /* Conteneur de l'image du héros */
 .hero__img-wrapper {
-  display: inline-block;
   border-radius: 1000px; /* Rend l'image totalement ronde */
   height: 400px;
   width: 400px;
-  object-fit: cover; /* Ajuste l'image pour remplir le cadre */
-  overflow-y: hidden; /* Cache le débordement vertical */
+  position: relative;
+  object-fit: cover;
+  overflow: hidden;
+  z-index: 10;
 }
+.hero__content{
+  position: relative;
+  z-index: 5;
+}
+
 
 /* Style de l'image du héros */
 .hero__img {
   height: 100%;
   width: 100%;
   object-fit: cover;
+  z-index: 10;
 }
 
 /* 📱 Adaptation pour les petits écrans */
@@ -232,9 +309,10 @@ body.active-card{
   width: 100%;
   height: 100%;
   gap: 10px;
-  z-index: 10;
+  z-index: 2;
   justify-content: center;
   align-items: center;
+  position: relative;
   transition: transform 0.8s ease-in-out; /* Animation fluide */
 }
 
@@ -248,10 +326,8 @@ body.active-card{
   cursor: pointer; /* Indique que l'élément est cliquable */
   display: flex;
   flex-wrap: wrap;
-  position: relative;
   height: auto;
   width: 80px;
-  z-index: 10;
   transition: transform 0.4s ease-in-out; /* Animation fluide */
 }
 
@@ -264,13 +340,10 @@ body.active-card{
   justify-content: center;
   align-items: center;
   background-color: rgb(137, 134, 134);
-
   max-width: 30vw;
   padding: 15px;
   z-index: 20;
-
   border-radius: 10px;
-
   /* Initialement en dehors de l'écran */
   transform: translateX(100vw);
   opacity: 0;
@@ -328,31 +401,29 @@ body.active-card{
 .projects__card {
   width: 33.33%;
   height: 40%;
-  background: 
-    linear-gradient(90deg,#dbdbe5  50%,#050d33 0) 
-    var(--_p,100%)/200% no-repeat;
+  background: linear-gradient(90deg, #dbdbe5 50%, #050d33 0) var(--_p, 100%) /
+    200% no-repeat;
 
-    border-radius: 20px 0; 
+  border-radius: 20px 0;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
   position: relative;
   transition: all 0.3s ease-in-out;
-  
 }
-.projects__card:hover{
+.projects__card:hover {
   transform: scale(1.05);
   --_p: 0%;
 }
-.projects__card h2{
-  font-size:3rem;
+.projects__card h2 {
+  font-size: 3rem;
   opacity: 1;
   text-shadow: none;
   transition: color 0.5s ease-in-out;
 }
-.projects__card:hover h2{
-  color:#e3b23c;
+.projects__card:hover h2 {
+  color: #e3b23c;
 }
 
 .projects__card.minimized {
@@ -401,7 +472,7 @@ body.active-card{
   flex-direction: row;
   flex-wrap: wrap;
   gap: 20px;
-  overflow-y: auto ;
+  overflow-y: auto;
 }
 
 .projects__card.active .projects__card-back {
@@ -440,28 +511,28 @@ body.active-card{
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  color:var(--color-font);
+  color: var(--color-font);
 }
 
 .project-item h3 {
   font-size: 1.2rem;
 }
-.project-item p{
-  font-size:1.1rem;
+.project-item p {
+  font-size: 1.1rem;
   margin-bottom: 10px;
 }
 
 .project-item a {
   display: inline-block;
   padding: 8px 16px;
-  width:20%;
+  width: 20%;
   background: var(--secondary-color);
   text-decoration: none;
   border-radius: 4px;
 }
 
 .project-item a:hover {
-  background:hsl(42, 75%, 80%) ;
+  background: hsl(42, 75%, 80%);
 }
 .projects__card.active .project-item {
   transform: translateX(0);
