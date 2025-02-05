@@ -56,16 +56,16 @@ document.addEventListener("DOMContentLoaded", function () {
     circle.style.backgroundColor = color;
 
     // Animation aléatoire des déplacements et échelles
-    const x1 = Math.floor(Math.random() * 200) - 100 + "vw"; // Augmenter la plage de -100 à 100 vw
-    const y1 = Math.floor(Math.random() * 200) - 100 + "vh"; // Augmenter la plage de -100 à 100 vh
-    const x2 = Math.floor(Math.random() * 200) - 100 + "vw"; // Augmenter la plage de -100 à 100 vw
-    const y2 = Math.floor(Math.random() * 200) - 100 + "vh"; // Augmenter la plage de -100 à 100 vh
-    const x3 = Math.floor(Math.random() * 200) - 100 + "vw"; // Augmenter la plage de -100 à 100 vw
-    const y3 = Math.floor(Math.random() * 200) - 100 + "vh"; // Augmenter la plage de -100 à 100 vh
-    const x4 = Math.floor(Math.random() * 200) - 100 + "vw"; // Augmenter la plage de -100 à 100 vw
-    const y4 = Math.floor(Math.random() * 200) - 100 + "vh"; // Augmenter la plage de -100 à 100 vh
-    const x5 = Math.floor(Math.random() * 200) - 100 + "vw"; // Augmenter la plage de -100 à 100 vw
-    const y5 = Math.floor(Math.random() * 200) - 100 + "vh"; // Augmenter la plage de -100 à 100 vh
+    const x1 = Math.floor(Math.random() * 200) - 100 + "vw"; 
+    const y1 = Math.floor(Math.random() * 200) - 100 + "vh"; 
+    const x2 = Math.floor(Math.random() * 200) - 100 + "vw"; 
+    const y2 = Math.floor(Math.random() * 200) - 100 + "vh"; 
+    const x3 = Math.floor(Math.random() * 200) - 100 + "vw"; 
+    const y3 = Math.floor(Math.random() * 200) - 100 + "vh"; 
+    const x4 = Math.floor(Math.random() * 200) - 100 + "vw"; 
+    const y4 = Math.floor(Math.random() * 200) - 100 + "vh"; 
+    const x5 = Math.floor(Math.random() * 200) - 100 + "vw"; 
+    const y5 = Math.floor(Math.random() * 200) - 100 + "vh"; 
 
     const opacity1 = Math.random() * 0.5 + 0.3;
     const opacity2 = Math.random() * 0.5 + 0.5;
@@ -98,7 +98,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // Ajouter le cercle à la section
     section.appendChild(circle);
   }
-
   // Créer les cercles
   for (let i = 0; i < numberOfCircles; i++) {
     createCircle();
@@ -114,7 +113,7 @@ let currentIconLi = null;
 document.querySelectorAll(".skills__icon").forEach((icon) => {
   icon.addEventListener("click", (event) => {
     event.stopPropagation();
-
+    
     const tempContainer = document.querySelector(".skills__icon--active");
     const parentIcon = icon.parentNode;
 
@@ -186,8 +185,9 @@ document.addEventListener("click", (event) => {
   }
 });
 
-// TODO Mise en forme du font ... a faire
-// TODO màj graphique de la section skills
+// TODO implémentation d'une navbar avec logo pour revenir au hero
+// TODO ajout d'un footer
+// TODOAjout du contenu sur les section skills et projects
 
 // Sélectionner le conteneur où les enfants seront ajoutés/supprimés
 const container = document.querySelector(".skills__icon--active");
@@ -254,7 +254,6 @@ cards.forEach((card) => {
         activeCard = null;
         isTransitioning = false;
         enableScrolling();
-
         cards.forEach((otherCard) => {
           otherCard.classList.remove("minimized");
         });

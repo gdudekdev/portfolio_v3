@@ -150,7 +150,7 @@ body.active-card {
   z-index: 3; /* Placer l'overlay par-dessus le fond animé */
   width: 100%;
   height: 100%;
-  background: rgb(5, 13, 51,0.85); /* Couleur sombre avec opacité */
+  background: rgb(5, 13, 51,0.70); /* Couleur sombre avec opacité */
   backdrop-filter: blur(100px); /* Flou sur l'arrière-plan */
 }
 /* Animation des cercles (déplacement et opacité) */
