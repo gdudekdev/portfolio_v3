@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Définir une luminosité aléatoire pour créer l'effet de dégradé
 
-    const lightness = Math.floor(Math.random() * 90) + 10; // Luminosité entre 40% et 80%
+    const lightness = Math.floor(Math.random() * 60) + 10; // Luminosité entre 40% et 80%
     const color = `hsl(255,0%, ${lightness}%)`;
     // Appliquer la couleur lumineuse
     circle.style.backgroundColor = color;
@@ -172,7 +172,7 @@ document.addEventListener("click", (event) => {
   }
 });
 
-// TODO ajout d'un effet de background sur le hero et modif de la font etc..
+// TODO Mise en forme du font ... a faire
 // TODO màj graphique de la section skills
 
 // Sélectionner le conteneur où les enfants seront ajoutés/supprimés
