@@ -330,7 +330,7 @@ body.active-card {
 
 /* ========== SECTION SKILLS ========== */
 
-.skills__wrapper {
+.skills{
   position: relative;
   display: flex;
   height: 100vh;
@@ -341,7 +341,8 @@ body.active-card {
 /* Liste des icônes */
 .skills__list-icon {
   display: flex;
-  flex-wrap: wrap;
+ 
+  
   width: 100%;
   height: 100%;
   gap: 10px;
@@ -354,7 +355,9 @@ body.active-card {
 
 /* Effet lorsque la liste devient active */
 .skills__list-icon--active {
-  transform: translateX(-20vw) rotate(90deg);
+  position: absolute;
+  left:25%;
+  transform: translateX(-50%) rotate(90deg);
 }
 
 /* Icônes des compétences */
@@ -375,24 +378,27 @@ body.active-card {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(137, 134, 134);
-  max-width: 30vw;
-  padding: 15px;
+  background-color: #050d330c;
+  position: relative;
   z-index: 20;
   border-radius: 10px;
   /* Initialement en dehors de l'écran */
   transform: translateX(100vw);
   opacity: 0;
+  max-width: 600px;
   transition: transform 0.8s ease-out, opacity 0.5s ease-in;
 }
 
 /* Quand la zone temporaire est active */
 .skills__icon--active.show {
-  transform: translateX(17vw) translateY(-5vh); /* Arrive à sa position finale */
+  position: absolute;
+  top:50%;
+  left:67.5%;
+  transform:translate(-50%,-50%);
   opacity: 1; /* Devient visible */
 }
 .skills__icon--active.hide {
-  transform: translateX(100vw) translateY(-5vh); /* Retour vers la gauche */
+  transform: translateX(100vw); /* Retour vers la gauche */
   opacity: 0;
 }
 
