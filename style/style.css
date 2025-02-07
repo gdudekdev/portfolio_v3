@@ -49,19 +49,16 @@ body.active-card {
   position: fixed;
   z-index: 1000;
   top: 50vh;
-  left: 20px;
+  left: 15px;
   transform: translateX(-1000%) translateY(-50%);
   transition: transform 0.8s ease;
 }
-
 .navbar.active {
   transform: translateX(10px) translateY(-50%);
 }
-
-
 .navbar__bar {
   position: absolute;
-  width: 150px;
+  width: 200px;
   border-radius: 10px;
   height: 0px;
   background-color: black;
@@ -71,6 +68,31 @@ body.active-card {
   height: 4px;
   opacity: 1;
 }
+
+#navlinks-hero {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  width: 80px;
+  height: 80px;
+  border: 1px solid #e3b23c;
+  z-index: 1001;
+  text-decoration: none; /* Ensure no underline */
+}
+
+#navlinks-hero img {
+  width: 100%;
+  height: 100%;
+}
+
+#navlinks-hero a {
+  text-decoration: none; /* Ensure no underline */
+}
+
+#navlinks-hero a:hover {
+  text-decoration: none; /* Ensure no underline on hover */
+}
+
 #barre1 {
   animation: moveUpBarre1 1.5s ease 1.3s forwards;
 }
@@ -160,16 +182,63 @@ body.active-card {
     opacity: 1;
   }
 }
+.navbar__item.active a {
+  mix-blend-mode: difference;
+  font-size: 2rem;
+  text-decoration: none;
+  font-weight: 700;
+  transition: color 0.3s ease;  
+}
+@keyframes textPulseWhite {
+   0%, 100% {
+    text-shadow: 0 0 10px #bdbdbd, 0 0 20px #bdbdbd, 0 0 30px #bdbdbd, 0 0 40px #bdbdbd;
+  }
+  50% {
+    text-shadow: 0 0 20px #bdbdbd, 0 0 30px #bdbdbd, 0 0 40px #bdbdbd, 0 0 50px #bdbdbd;
+  }
+}
+@keyframes textPulseBlack {
+  0%, 100% {
+    text-shadow: 0 0 10px black, 0 0 20px black, 0 0 30px black, 0 0 40px black;
+  }
+  50% {
+    text-shadow: 0 0 20px black, 0 0 30px black, 0 0 40px black, 0 0 50px black;
+  }
+}
+
 
 .navbar__links li {
   margin: 10px 0;
 }
-.navbar__links a{
-  mix-blend-mode: difference;
-  font-size: 1.2rem;
-  text-decoration: none;
-  font-weight: 700;
-  transition: color 0.3s ease;    
+.navbar__item a {
+  animation: none; /* Default state */
+  font-size: 1.5rem;
+  position: relative;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.navbar__item a::before {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: currentColor;
+  transition: width 0.5s ease, left 0.5s ease;
+}
+
+.navbar__item.active a::before {
+  width: 100%;
+  left: 0;
+}
+
+.navbar__item.active a.textPulseWhite {
+  animation: textPulseWhite 1s ease infinite;
+}
+
+.navbar__item.active a.textPulseBlack {
+  animation: textPulseBlack 1s ease infinite;
 }
 /* ========== SECTION HERO ========== */
 
