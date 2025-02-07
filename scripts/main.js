@@ -29,15 +29,19 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
 /* ========== NAVBAR ========== */
 
 //Animation de la navbar au chargement de la page
-const navbar = document.querySelector(".navbar");
-document.addEventListener("DOMContentLoaded", function () {
-  const navbarLinks = document.querySelector(".navbar__links");
+;
+document.addEventListener("DOMContentLoaded",()=> {
+  const navbar = document.querySelector(".navbar")
+  const bar = document.querySelectorAll(".navbar__bar");
+  // Animate the bar
+  bar.forEach((element) => {
+    console.log(element)
+    setTimeout(() => {
+      element.classList.add("visible");
+    }, 500);
+  });
 
   navbar.classList.add("active");
-
-  setTimeout(() => {
-    navbarLinks.classList.add("active");
-  }, 1000);
 });
 
 
